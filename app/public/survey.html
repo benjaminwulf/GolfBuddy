@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Golf Buddy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body>
+        <nav class="nav-extended">
+                <div class="nav-wrapper">
+                  <a href="#" class="brand-logo">Golf Buddy</a>
+                </div>
+                <div class="nav-content">
+                  <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="home.html">Home</a></li>
+                    <li class="tab"><a href="survey.html">Survey</a></li>
+                  </ul>
+                </div>
+              </nav>
+    <!-- Here we will place a card holder to keep the survey questions -->
+    <div>
+            <div class="row">
+                    <div class="col s12 m6">
+                      <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                          <span class="card-title">Pairing Questions</span>
+                          <div>
+                              <button class="start-survey btn">
+                              <!-- Here is where you click to start the survey -->
+                                 Start
+                              </button>
+                              <div id="count-question">
+                              <!-- Here is were the jQuery will present question count. -->
+                              </div>
+                              <div id="ask-question">
+                              <!-- Here is were the jQuery will present the survey question. -->
+                              <div id="radio-buttons">
+                              <!-- Here is where the form of radio buttons will go -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        
+    </div>
+
+    <script type="text/javascript">
+         // var for count of sum of all num answer
+         count = 0;
+
+         // Intialize question ID
+         questionID;
+
+         // var answerflaged = false
+         
+         // Set variable for radio buttons to false
+         var flagTourPro = false;
+         var flagMiniTourPro = false;
+         var flagClubPro = false;
+         var flagWeekendWarrior = false;
+         var flagGolfingHack = false
+         run();
+
+         // Survey Reset
+         function surveyReset() {
+             count = 0;
+             flagTourPro = false;
+             flagMiniTourPro = false;
+             flagClubPro = false;
+             flagWeekendWarrior = false;
+             flagGolfingHack = false
+
+             run();
+         };
+         
+         //======
+         //bww Look up documentation for 'map'
+         var questionID = golfQuestions.map(function(questionNum) {return golfQuestions.id;});
+         var questionDeclared = golfQuestions.map(function(multChoice) {return multChoice.question;});
+         var questionChoice = golfQuestions.map(function(multChoice) {return multChoice.choices;});
+         //======
+
+         var golfQuestions = [
+           {
+           id: 1,
+           question: 'How does your established golf handicap?',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack'
+             }
+           },
+           {
+           id: 2,
+           question: 'What type of tournaments would you compete?',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack'
+             }
+           },
+           {
+           id: 3,
+           question: 'Are you currently under sponsorship?',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack'
+             }
+           },
+           {
+           id: 4,
+           question: 'Do you play a tour blade club or a set of used clubs?',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack'
+             }
+           },
+           {
+           id: 5,
+           question: 'Do you plan an expensive ball or are you the type that plays water or range balls',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack'
+             }
+           },
+           {
+           id: 6,
+           question: 'Do you dress like a pro or play golf in jean shorts?',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack'
+             }
+           },
+           {
+           id: 7,
+           question: 'Are you more likely to use a caddy or ride in a golf cart?',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack'
+             }
+           },
+           {
+           id: 8,
+           question: 'Are you likely to golf sober or do you prefer to golf drunk or high?',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack' 
+             }
+           },
+           {
+           id: 9,
+           question: 'Do you own golf spikes or do you play in sneaker or sandles.',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack' 
+             }
+           },
+           {
+           id: 10,
+           question: 'Are you the type that plays from the tips or do you play from the easiest tee box?',
+           flag: {
+               a: 'Tour Pro',
+               b: 'Mini Tour Pro',
+               c: 'Club Pro',
+               d: 'Weekend Warrior',
+               e: 'Golfing Hack'
+             }
+           }
+         ];
+
+         $(".start-survey").on('click', function() {
+              if (count < 10) {
+                  for(var i = 0; i < 10; count++)
+                  $('#count-question').html('<h1>' + 'Question: ' + count + '<h1>');
+                  
+                  $('#ask-question').html('<h3>' + golfQuestions[i].question + '<h3>');
+
+                  $('#radio-buttons').html('<form><p><label><input name="group1" type="radio" /><span>' + golfQuestions[i].flag + '</span></label></p>');
+              } else {
+                console.log('Survey is complete')
+              }
+         });
+
+     
+    
+
+    </script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+     crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+</body>
+
+</html>
